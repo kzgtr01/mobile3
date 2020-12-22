@@ -3,108 +3,124 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BallControlScript : MonoBehaviour
-{
-    //Reference to rigidbody2d component of the ball game object
-    Rigidbody2D rb;
+public class BallControlScript : MonoBehaviour {
 
-    //range value so moveSpeedModifier can be mod in inspector
-    [Range(.2f,2f)]
-    public float moveSpeedModifier = .5f;
+	// Reference to Rigidbody2D component of the ball game object
+	Rigidbody2D rb;
 
-    //direction var that read acceleration input to be add
-    //as velocity to Rigidbody2d component
-    float dirX, dirY;
+	// Range option so moveSpeedModifier can be modified in Inspector
+	// this variable helps to simulate objects acceleration
+	[Range(0.2f, 2f)]
+	public float moveSpeedModifier = 0.5f;
 
-    //ref to ball animator component to control animation transition
-    Animator anim;
+	// Direction variables that read acceleration input to be added
+	// as velocity to Rigidbody2d component
+	float dirX, dirY;
 
-    //setting bool var that ball is alive at the beningging
-   static bool isDead;
+	// Reference to Balls Animator component to control animaations transition
+	Animator anim;
 
-   //var to allow or disallow movement when ball is alive or dead
-   static bool moveAllowed;
+	// Setting bool variable that ball is alive at the beginning
+	static bool isDead;
 
-   //var to be set to true if you win
-   static bool youWin;
+	// Variable to allow or disallow movement when ball is alive or dead
+	static bool moveAllowed;
 
-   //ref to WinText game object to control its appearance
-   // text game object can be added on inspector because of [serializefield] line
-   [SerializeField]
-   GameObject winText;
+	// Variable to be set to true if you win
+	static bool youWin;
 
-   //use this for initialization
-   void Start (){
+	// Reference to WinText game object to control its appearance
+	// Text game object can be added in inspector because of [SerializeField] line
+	[SerializeField]
+	GameObject winText;
 
-       //turn wintext off at the start
-       winText.gameObject.SetActive(false);
+	// Use this for initialization
+	void Start () {
 
-       //you dont win at the start
-       youWin=false;
+		// Turn WinText off at the start
+		winText.gameObject.SetActive(false);
 
-       //movement is allowed at the start
-       moveAllowed = true;
+		// You don't win at the start
+		youWin = false;
 
-       //ball is alive at the start
-       isDead = false;
+		// Movement is allowed at the start
+		moveAllowed = true;
 
-       //Getting rigidbody2d component of the ball game object
-       rb=GetComponent<Rigidbody2D> ();
+		// Ball is alive at the start
+		isDead = false;
 
-       //getting animator component of the ball game object
-       anim = GetComponent<Animator> ();
+		// Getting Rigidbody2D component of the ball game object
+		rb = GetComponent<Rigidbody2D> ();
 
-       //set BallAlive animation
-       anim.SetBool ("BallDead", isDead);
-   }
+		// Getting Animator component of the ball game object
+		anim = GetComponent<Animator> ();
 
-   // Update is called once per frame
-   void Update () {
+		// Set BallAlive animation
+		anim.SetBool ("BallDead", isDead);
+	}
+	
+	// Update is called once per frame
+	void Update () {
 
-       //getting devices accelerometer data in X and Y direction
-       //multiplied by move speed modifier
-       dirX = Input.acceleration.x * moveSpeedModifier;
-       dirY = Input.acceleration.y * moveSpeedModifier;
+		// Getting devices accelerometer data in X and Y direction
+		// multiplied by move speed modifier
+		dirX = Input.acceleration.x * moveSpeedModifier;
+		dirY = Input.acceleration.y * moveSpeedModifier;
 
-       // if isDead is true
-       if (isDead) {
+		// if isDead is true
+		if (isDead) {
 
-           //then ball movement is stopped
-           rb.velocity = new Vector2 (0, 0);
+			// then ball movement is stopped
+			rb.velocity = new Vector2 (0, 0);
 
-           //ball movement is not allowed anymore
-           moveAllowed = false;
+			// Set Animators BallDead variable to true to switch to 
+			anim.SetBool ("BallDead", isDead);
 
-           //switch to Ball Dead Animation so ball falls into exit hole
-           anim.SetBool("BallDead", true);
+			// Restart scene to play again in 1 seconds
+			Invoke ("RestartScene", 1f);
+		}
 
-           //Restart scene to play again in 2 secs
-           Invoke ("NextScene", 2f);
-       }
-   }
+		// If you win
+		if (youWin) {
 
-   void FixedUpdate()
-   {
-       //setting a velocity to rigidbody2d component according to accelerometer data
-       if (moveAllowed)
-       rb.velocity = new Vector2 (rb.velocity.x + dirX, rb.velocity.y + dirY);
-   }
-   
-   //method is invoke by deathholescript when ball touches deathHole collider
-   public static void setIsDeadTrue(){
-       //setting isDead to true
-       isDead = true;
-   }
+			// then turn YouWin sign on
+			winText.gameObject.SetActive (true);
 
-   //method invoked by exithole game object when ball touches its collider
-   public static void setYouWinToTrue(){
-       youWin = true;
-   }
+			// ball movement is not allowed anymore
+			moveAllowed = false;
 
-   //method to restart scene
-   void NextScene(){
-       SceneManager.LoadScene("RB2");
-   }
+			// switch to Ball Dead Animation so ball falls into exit hole
+			anim.SetBool("BallDead", true);
+
+			// Restart scene to play again in 2 seconds
+			Invoke ("NextScene", 2f);
+		}
+
+	}
+
+	void FixedUpdate()
+	{
+		// Setting a velocity to Rigidbody2D component according to accelerometer data
+		if (moveAllowed)
+		rb.velocity = new Vector2 (rb.velocity.x + dirX, rb.velocity.y + dirY);
+	}
+
+	// Method is invoked by DeathHoleScript when ball touches deathHole collider
+	public static void setIsDeadTrue()
+	{
+		// Setting isDead to true
+		isDead = true;
+	}
+
+	// Method is inviked by exit hole game object when ball thouches its collider
+	public static void setYouWinToTrue()
+	{
+		youWin = true;
+	}
+
+	// Method to restart current scene
+	void NextScene()
+	{
+		SceneManager.LoadScene ("RB2");
+	}
 }
-
-
