@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExitHoleScript : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider ball) {
         BallControlScript.setYouWinToTrue ();
     }
 }
