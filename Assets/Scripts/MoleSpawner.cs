@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class cmspawn : MonoBehaviour
+public class MoleSpawner : MonoBehaviour
 {
-    public GameObject pandacmPrefab;
+    public GameObject molePrefab;
     public Transform[] spawnPoints;
     public float gameTime;
     public Text gameText;
@@ -29,7 +29,7 @@ public class cmspawn : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject pandacm = Instantiate(pandacmPrefab) as GameObject;
-        pandacm.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+        GameObject mole = Instantiate(molePrefab) as GameObject;
+        mole.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
     }
 }

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class hammercontroller : MonoBehaviour
+public class Hammercontroller : MonoBehaviour
 {
     public Text scoreText;
     public int score;
 
-    private cmspawn ms;
+    private MoleSpawner ms;
     
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
-        ms = GetComponent<cmspawn>();
+        ms = GetComponent<MoleSpawner>();
     }
 
     // Update is called once per frame

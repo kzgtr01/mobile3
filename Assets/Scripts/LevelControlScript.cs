@@ -82,7 +82,7 @@ public class LevelControlScript : MonoBehaviour {
 	// Method loads MainMenu scene
 	void GotoMainMenu()
 	{
-		SceneManager.LoadScene ("MainMenu");
+		SceneManager.LoadScene (currentSceneIndex - 1);
 	}
 
 }
