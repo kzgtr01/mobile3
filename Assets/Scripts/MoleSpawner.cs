@@ -20,6 +20,7 @@ public class MoleSpawner : MonoBehaviour
     void Update()
     {
         gameTime -= Time.deltaTime;
+        
         if(gameTime < 1)
         {
             gameTime = 0;

@@ -10,4 +10,8 @@ public class BackButtonScript : MonoBehaviour {
 	{
 		SceneManager.LoadScene ("MainMenu");
 	}
+	public void ResetLevel()
+	{
+		SceneManager.LoadScene ("CM1");
+	}
 }
