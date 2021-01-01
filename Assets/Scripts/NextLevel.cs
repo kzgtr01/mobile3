@@ -7,6 +7,6 @@ public class NextLevel : MonoBehaviour
 {
     // Start is called before the first frame update
     public void Nextlevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("MainMenu");
     }
 }

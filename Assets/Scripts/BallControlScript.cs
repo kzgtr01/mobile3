@@ -93,7 +93,7 @@ public class BallControlScript : MonoBehaviour {
 			anim.SetBool("BallDead", true);
 
 			// Restart scene to play again in 2 seconds
-			Invoke ("NextScene", 2f);
+			Invoke ("LoadNextLevel", 2f);
 		}
 
 	}
@@ -119,8 +119,8 @@ public class BallControlScript : MonoBehaviour {
 	}
 
 	// Method to restart current scene
-	void NextScene()
+		public void LoadNextLevel()
 	{
-		SceneManager.LoadScene ("RB2");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
 	}
 }
