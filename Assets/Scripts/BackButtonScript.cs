@@ -8,10 +8,10 @@ public class BackButtonScript : MonoBehaviour {
 	// Load Main Menu scene when Back Button is pressed
 	public void BackToMainMenu()
 	{
-		SceneManager.LoadScene ("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 	public void ResetLevel()
 	{
-		SceneManager.LoadScene ("CM1");
+		SceneManager.LoadScene("CM1");
 	}
 }
