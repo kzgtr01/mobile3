@@ -20,4 +20,8 @@ public class mainmenu : MonoBehaviour
     {   
         SceneManager.LoadScene("Setting");
     }
+
+    public void Quit(){
+        Application.Quit();
+    }
 }
