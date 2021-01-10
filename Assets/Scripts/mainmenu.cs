@@ -10,17 +10,6 @@ public class mainmenu : MonoBehaviour
     {
         SceneManager.LoadScene("GameMode");
     }
-
-    // Update is called once per frame
-    public void Howtoplay()
-    {   
-        SceneManager.LoadScene("HowToPlay");
-    }
-    public void Setting()
-    {   
-        SceneManager.LoadScene("Setting");
-    }
-
     public void Quit(){
         Application.Quit();
     }
