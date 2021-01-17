@@ -25,7 +25,7 @@ public class MoleSpawner : MonoBehaviour
         {
             gameTime = 0;
          }
-         gameText.text = gameTime.ToString();
+         gameText.text = gameTime.ToString("F2");
     }   
 
     public void Spawn()

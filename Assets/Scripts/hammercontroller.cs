@@ -7,6 +7,7 @@ public class Hammercontroller : MonoBehaviour
 {
     public Text scoreText;
     public int score;
+    public AudioSource audioSource;
 
     private MoleSpawner ms;
     
@@ -29,6 +30,7 @@ public class Hammercontroller : MonoBehaviour
             if(hit.collider != null)
             {
                 Destroy(hit.transform.gameObject);
+                audioSource.Play();
                 score += 1;
                 scoreText.text = score.ToString();
                 ms.Spawn();

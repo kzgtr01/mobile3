@@ -7,7 +7,6 @@ public class BallControlScript : MonoBehaviour {
 
 	// Reference to Rigidbody2D component of the ball game object
 	Rigidbody2D rb;
-
 	// Range option so moveSpeedModifier can be modified in Inspector
 	// this variable helps to simulate objects acceleration
 	[Range(0.2f, 2f)]
