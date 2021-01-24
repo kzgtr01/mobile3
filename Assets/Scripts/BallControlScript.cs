@@ -7,6 +7,7 @@ public class BallControlScript : MonoBehaviour {
 
 	// Reference to Rigidbody2D component of the ball game object
 	Rigidbody2D rb;
+	public AudioSource audioSource;
 	// Range option so moveSpeedModifier can be modified in Inspector
 	// this variable helps to simulate objects acceleration
 	[Range(0.2f, 2f)]
@@ -84,6 +85,7 @@ public class BallControlScript : MonoBehaviour {
 
 			// then turn YouWin sign on
 			winText.gameObject.SetActive (true);
+			audioSource.Play();
 
 			// ball movement is not allowed anymore
 			moveAllowed = false;
